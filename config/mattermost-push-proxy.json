@@ -1,0 +1,11 @@
+{
+    "ListenAddress": ":8066",
+    "ApplePushUseDevelopment": false,
+    "ApplePushCertPrivate": "/opt/mattermost-push-proxy/config/mattermost_production_priv.pem",
+    "ApplePushCertPassword": "",
+    "ApplePushTopic": "com.mattermost.Mattermost",
+    "AndroidApiKey": "",
+    "ThrottlePerSec": 300,
+    "ThrottleMemoryStoreSize": 50000,
+    "ThrottleVaryByHeader": "X-Forwarded-For"
+}
