@@ -1,16 +1,18 @@
-FROM sameersbn/ubuntu:14.04.20170110
+FROM alpine:3.4
 MAINTAINER jostyee <hi@syntaxoff.com>
 
-ENV APP_DIR="/opt/mattermost-push-proxy"
+ENV MATTERMOST_VERSION=3.5 \
+	MATTERMOST_BUILD_DIR="/build"
 
-RUN wget --quiet -O mattermost.tar.gz https://github.com/mattermost/mattermost-push-proxy/releases/download/v3.5/mattermost-push-proxy-3.5.0.tar.gz \
-	&& mkdir -p ${APP_DIR} \
-	&& tar -xf mattermost.tar.gz -C ${APP_DIR} --strip 1 \
-	&& chmod +x ${APP_DIR}/bin/mattermost-push-proxy \
-	&& rm mattermost.tar.gz
+COPY assets/build/ ${MATTERMOST_BUILD_DIR}/
 
-COPY assets/runtime/entrypoint.sh .
-RUN chmod +x ./entrypoint.sh
+# Use dl-3, as the cdn hosted on fastly.net, which has been blocked in China
+RUN sed -i -e 's/dl-cdn/dl-5/' /etc/apk/repositories \
+	&& apk --update add ca-certificates \
+	&& apk add --no-cache --virtual build-dependencies go wget bash \
+	&& update-ca-certificates \
+	&& bash ${MATTERMOST_BUILD_DIR}/install.sh \
+	&& apk del build-dependencies
 
 EXPOSE 8066
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/mattermost-push-proxy"]

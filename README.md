@@ -1,2 +1,5 @@
 # docker-mattermost-push-proxy
 Dockerized [Mattermost Push Notifications Service](https://github.com/mattermost/mattermost-push-proxy)
+
+## Run
+    docker run --name mattermost-push-proxy -v `pwd`/config:/config jostyee/mattermost-push-proxy:3.5.0_alpine -config config/mattermost-push-proxy.json

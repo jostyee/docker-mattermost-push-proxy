@@ -3,8 +3,8 @@ version: '2'
 services:
   mattermost-push-proxy:
     restart: always
-    image: jostyee/mattermost-push-proxy:3.5.0
+    image: jostyee/mattermost-push-proxy:3.5.0_alpine
     ports:
       - "8066:8066"
     volumes:
-      - ./config:/opt/mattermost-push-proxy/config
+      - ./config/mattermost_production_priv.pem
