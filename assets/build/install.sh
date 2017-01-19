@@ -19,7 +19,7 @@ mv ${MATTERMOST_PKG_PATH}/mattermost-push-proxy-${MATTERMOST_VERSION} ${MATTERMO
 echo "Building mattermost-push-proxy..."
 cd ${MATTERMOST_BUILD_PATH}
 # http://stackoverflow.com/questions/36279253/go-compiled-binary-wont-run-in-an-alpine-docker-container-on-ubuntu-host
-GOOS=linux go build -tags netgo -a -v -o /mattermost-push-proxy
+GOOS=linux go build -tags netgo -a -o /mattermost-push-proxy
 
 # cleanup build dependencies, caches and artifacts
 rm -rf ${GOPATH}
