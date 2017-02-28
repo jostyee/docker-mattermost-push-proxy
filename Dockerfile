@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM frolvlad/alpine-glibc:alpine-3.5
 MAINTAINER jostyee <hi@syntaxoff.com>
 
 ENV MATTERMOST_VERSION=3.7 \
