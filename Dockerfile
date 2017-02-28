@@ -1,12 +1,12 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER jostyee <hi@syntaxoff.com>
 
-ENV MATTERMOST_VERSION=3.5 \
+ENV MATTERMOST_VERSION=3.7 \
 	MATTERMOST_BUILD_DIR="/build"
 
 COPY assets/build/ ${MATTERMOST_BUILD_DIR}/
 
-# Use dl-3, as the cdn hosted on fastly.net, which has been blocked in China
+# Use dl-5, as the cdn hosted on fastly.net, which has been blocked in China
 RUN sed -i -e 's/dl-cdn/dl-5/' /etc/apk/repositories \
 	&& apk --update add ca-certificates \
 	&& apk add --no-cache --virtual build-dependencies go wget bash \
