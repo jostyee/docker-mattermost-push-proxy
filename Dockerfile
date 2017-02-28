@@ -1,18 +1,14 @@
 FROM frolvlad/alpine-glibc:alpine-3.5
 MAINTAINER jostyee <hi@syntaxoff.com>
 
-ENV MATTERMOST_VERSION=3.7 \
-	MATTERMOST_BUILD_DIR="/build"
-
-COPY assets/build/ ${MATTERMOST_BUILD_DIR}/
-
 # Use dl-5, as the cdn hosted on fastly.net, which has been blocked in China
 RUN sed -i -e 's/dl-cdn/dl-5/' /etc/apk/repositories \
-	&& apk --update add ca-certificates \
-	&& apk add --no-cache --virtual build-dependencies go wget bash \
-	&& update-ca-certificates \
-	&& bash ${MATTERMOST_BUILD_DIR}/install.sh \
-	&& apk del build-dependencies
+	&& apk add --no-cache ca-certificates curl \
+	&& curl -sSL https://github.com/mattermost/mattermost-push-proxy/releases/download/v3.7/mattermost-push-proxy-3.7.0.tar.gz | tar -xz \
+	&& mv /mattermost-push-proxy/bin/mattermost-push-proxy /push-proxy \
+	&& chmod +x /push-proxy \
+	&& rm -rf /mattermost-push-proxy \
+	&& apk del curl
 
 EXPOSE 8066
-ENTRYPOINT ["/mattermost-push-proxy"]
+ENTRYPOINT ["/push-proxy"]
