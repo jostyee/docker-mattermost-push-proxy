@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.5
+FROM frolvlad/alpine-glibc:alpine-3.6
 MAINTAINER jostyee <hi@syntaxoff.com>
 
 COPY ./push-proxy /push-proxy
