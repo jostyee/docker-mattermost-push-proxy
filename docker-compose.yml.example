@@ -3,7 +3,7 @@ version: '2'
 services:
   mattermost-push-proxy:
     restart: always
-    image: jostyee/mattermost-push-proxy:3.8.0
+    image: jostyee/mattermost-push-proxy:3.10.0
     ports:
       - "8066:8066"
     volumes:
