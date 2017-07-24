@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.5
+FROM frolvlad/alpine-glibc:alpine-3.6
 MAINTAINER jostyee <hi@syntaxoff.com>
 
 # Use dl-5, as the cdn hosted on fastly.net, which has been blocked in China
