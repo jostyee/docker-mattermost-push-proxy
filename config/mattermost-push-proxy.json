@@ -3,6 +3,7 @@
     "ThrottlePerSec": 300,
     "ThrottleMemoryStoreSize": 50000,
     "ThrottleVaryByHeader": "X-Forwarded-For",
+    "EnableMetrics": true,
     "ApplePushSettings": [
     	{
     		"Type" : "apple",
@@ -10,12 +11,23 @@
 	    	"ApplePushCertPrivate": "./config/mattermost_production_priv.pem",
 	    	"ApplePushCertPassword": "",
 	    	"ApplePushTopic": "com.mattermost.Mattermost"
-	    }
+	},
+        {
+            "Type":"apple_rn",
+            "ApplePushUseDevelopment":false,
+            "ApplePushCertPrivate":"./config/mattermost_production_priv_rn.pem",
+            "ApplePushCertPassword":"",
+            "ApplePushTopic":"com.mattermost.mattermost.rn"
+        }
     ],
     "AndroidPushSettings": [
-    	{
-    		"Type" : "android",
-	    	"AndroidApiKey": ""
-	    }
+        {
+            "Type" : "android",
+            "AndroidApiKey": ""
+        },
+        {
+            "Type":"android_rn",
+            "AndroidApiKey":""
+        }
     ]
 }
